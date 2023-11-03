@@ -56,7 +56,6 @@ func (b *Batch) Start() {
 			}
 			break
 		}
-
 	}
 }
 

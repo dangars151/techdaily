@@ -18,7 +18,7 @@ func main() {
 				CreatedAt: time.Now().Format(time.RFC3339),
 			}).Post("http://localhost:8080/comments")
 
-			fmt.Println(string(res.Body()), err)
+			fmt.Println(i+1, string(res.Body()), err)
 		}(i)
 	}
 
