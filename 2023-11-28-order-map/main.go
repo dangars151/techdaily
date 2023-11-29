@@ -12,7 +12,7 @@ import (
 	- Trong Golang khi sử dụng json.Unmarshal để parse dữ liệu kiểu map thì thứ tự các phần tử trong map sẽ không được đảm bảo
 	- Có thể google search với cụm từ: "golang encoding/json: no way to preserve the order of map keys" sẽ có khá nhiều bài nói về vấn đề này
 	- Điều này là không mong muốn trong một số TH ta muốn giữ nguyên thứ tự các phần tử được truyền lên
-	- Ý tưởng: Sử dụng hàm bytes.Index để xác định vị trí của các key trong dữ liệu bytes truyền lên
+	- Ý tưởng: Sử dụng hàm bytes.Index để xác định vị trí của các key trong dữ liệu bytes truyền lên 
 */
 
 func main() {
