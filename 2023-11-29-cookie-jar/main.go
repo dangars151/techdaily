@@ -3,7 +3,7 @@ package main
 import "github.com/go-resty/resty/v2"
 
 /*
-	- Giống với trên các trình duyệt sẽ lưu lại cookie (như local storage...) để các request sau không cần phải đăng nhập
+	- Trên các trình duyệt sẽ có cơ chế lưu lại cookie (như trong local storage...) để các request sau không cần phải đăng nhập
 	- cookieJar cũng hoạt động tương tự như vậy, nó cũng lưu lại cookie vào một thành phần gọi là cookie jar để các request có thể sử dụng lại
 	- Thường sử dụng khi ta cần gọi api của bên thứ 3 mà không muốn phải set cookie nhiều
 	- Trong Golang:
