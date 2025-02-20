@@ -10,6 +10,15 @@ import (
 )
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			buf := make([]byte, 1024) // Buffer để lưu stack trace
+			n := runtime.Stack(buf, false)
+			fmt.Printf("Panic recovered: %v\n", r)
+			fmt.Printf("Stack trace:\n%s\n", buf[:n])
+		}
+	}()
+
 	service := micro.NewService(
 		micro.Address(":8080"),
 		micro.Name("helloworld"),
@@ -21,7 +30,7 @@ func main() {
 
 	service.Run()
 
-	panic("something went wrong") // cho nay bi panic, nhung go micro se tu dong recover
+	//panic("something went wrong") // cho nay bi panic, nhung go micro se tu dong recover
 }
 
 func LogWrapper(fn server.HandlerFunc) server.HandlerFunc {
@@ -64,7 +73,15 @@ type Response struct {
 type Helloworld struct{}
 
 func (h *Helloworld) Greeting(ctx context.Context, req *Request, rsp *Response) error {
-	panic("something went wrong") // cho nay bi panic, nhung go micro se tu dong recover
+	defer func() {
+		recover()
+	}()
+
+	go func() {
+		panic("something went wrong") // cho nay bi panic, nhung go micro se tu dong recover
+	}()
+
+	return nil
 }
 
 func (h *Helloworld) Bye(ctx context.Context, req *Request, rsp *Response) error {
